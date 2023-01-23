@@ -9,39 +9,33 @@ public class Numbers_03 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int[] inputArr = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+        int[] inputArr = Arrays.stream(scanner.nextLine().split(" ")).sorted(Collections.reverseOrder())
+                .mapToInt(Integer::parseInt).toArray();
         int sum = 0;
         ArrayList<Integer> list = new ArrayList<>();
         for (int i : inputArr) {
             sum += i;
         }
-        boolean isEqual = false;
+        boolean isEqual = true;
         double average = sum / (inputArr.length * 1.0);
         if (inputArr.length > 1) {
             for (int i = 0; i < inputArr.length - 1; i++) {
-                int current = inputArr[i];
+                int current = inputArr[0];
                 int next = inputArr[i + 1];
-                if (current == next) {
-                    isEqual = true;
-                } else {
+                if (current != next) {
                     isEqual = false;
                 }
             }
-            if (isEqual) {
-                System.out.println("No");
-                return;
-            }
         }
 
-        if (inputArr.length <= 1) {
+        for (int i = inputArr.length - 1; i >= 0; i--) {
+            if (inputArr[i] > average) {
+                list.add(inputArr[i]);
+            }
+        }
+        if (list.isEmpty()) {
             System.out.println("No");
             return;
-        } else {
-            for (int i = inputArr.length - 1; i >= 0; i--) {
-                if (inputArr[i] > average) {
-                    list.add(inputArr[i]);
-                }
-            }
         }
 
         list.sort(Collections.reverseOrder());
