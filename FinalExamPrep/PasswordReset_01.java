@@ -32,7 +32,7 @@ public class PasswordReset_01 {
                     String replaceWith = tokens[1].split(" ")[1];
                     if (input.contains(target)) {
                         input = input.replace(target, replaceWith);
-                        System.out.println(input);`
+                        System.out.println(input);
                     } else {
                         System.out.println("Nothing to replace!");
                     }
